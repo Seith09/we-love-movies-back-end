@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const notFound = require("./errors/notFound");
 const errorHandler = require("./errors/errorHandler");
+const methodNotAllowed = require("./errors/methodNotAllowed");
 
 const moviesRouter = require("./routes/movies");
 const theatersRouter = require("./routes/theaters");
@@ -15,6 +16,8 @@ app.use(express.json());
 app.use("/movies", moviesRouter);
 app.use("/theaters", theatersRouter);
 app.use("/reviews", reviewsRouter);
+
+app.use(methodNotAllowed);
 
 app.use(notFound);
 app.use(errorHandler);
